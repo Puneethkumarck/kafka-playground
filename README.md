@@ -9,8 +9,14 @@ scaling kafka brokers using docker-compose
 
 docker-compose up -d
 
-Add more brokers:
+#### Add more brokers:
+
 docker-compose scale kafka=3
 
-Destroy a cluster:
+#### Destroy a cluster:
+
 docker-compose stop
+
+Installing virutal box to create docker machine in MAC 
+
+brew cask install virtualbox
