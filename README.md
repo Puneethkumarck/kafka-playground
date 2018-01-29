@@ -1,9 +1,9 @@
 # kafka-playground
 To play with Latest Apache kafka features
 
-##Install kafka with docker
+## Install kafka with docker
 
-![Settings Window](https://hub.docker.com/r/wurstmeister/kafka/)
+(https://hub.docker.com/r/wurstmeister/kafka/)
   
 scaling kafka brokers using docker-compose
 
