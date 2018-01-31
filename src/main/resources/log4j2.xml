@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
+        </Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="youtube_api_console_appender" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <!-- Rolling File Appender -->
+        <!-- filePattern="logs/cwt_application-%d{yyyy-MM-dd}-%i.log"-->
+        <!--${sys:logs.dir}/${sys:appname}-%d{yyyy-MM-dd}-%i.log-->
+        <RollingFile name="youtube-api-application-file" fileName="logs/youtube_api_application.log"
+                     filePattern="logs/youtube_api-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout>
+                <Pattern>${LOG_PATTERN}</Pattern>
+            </PatternLayout>
+
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+        <Async name="youtube-api-async" includeLocation="false" blocking="false">
+            <AppenderRef ref="youtube-api-application-file"/>
+        </Async>
+
+    </Appenders>
+
+
+
+    <Loggers>
+        <Logger name="com.home.work" level="debug" additivity="false">
+            <AppenderRef ref="youtube-api-async" />
+        </Logger>
+
+        <Logger name="org.springframework" level="debug" additivity="false">
+            <AppenderRef ref="youtube-api-async"/>
+        </Logger>
+
+        <Root level="info">
+            <AppenderRef ref="youtube_api_console_appender" />
+            <AppenderRef ref="youtube-api-async"/>
+        </Root>
+
+    </Loggers>
+</Configuration>
