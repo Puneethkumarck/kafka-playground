@@ -1,0 +1,9 @@
+FROM cassandra:2.2
+
+COPY config_cassandra/entrypoint-wrap-cassandra.sh /entrypoint-wrap-cassandra.sh
+
+COPY config_cassandra/create_login_history.sql  docker-entrypoint-initdb.d/
+
+ENTRYPOINT ["/entrypoint-wrap-cassandra.sh"]
+
+CMD ["cassandra", "-f"]

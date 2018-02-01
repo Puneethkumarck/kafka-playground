@@ -8,15 +8,15 @@
     </Properties>
 
     <Appenders>
-        <Console name="youtube_api_console_appender" target="SYSTEM_OUT" follow="true">
+        <Console name="kafka_play_console_appender" target="SYSTEM_OUT" follow="true">
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
 
         <!-- Rolling File Appender -->
         <!-- filePattern="logs/cwt_application-%d{yyyy-MM-dd}-%i.log"-->
         <!--${sys:logs.dir}/${sys:appname}-%d{yyyy-MM-dd}-%i.log-->
-        <RollingFile name="youtube-api-application-file" fileName="logs/youtube_api_application.log"
-                     filePattern="logs/youtube_api-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="kafka-play-application-file" fileName="logs/kafka_play_application.log"
+                     filePattern="logs/kafka_play-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout>
                 <Pattern>${LOG_PATTERN}</Pattern>
             </PatternLayout>
@@ -27,26 +27,25 @@
             <DefaultRolloverStrategy max="10"/>
         </RollingFile>
 
-        <Async name="youtube-api-async" includeLocation="false" blocking="false">
-            <AppenderRef ref="youtube-api-application-file"/>
+        <Async name="kafka-play-async" includeLocation="false" blocking="false">
+            <AppenderRef ref="kafka-play-application-file"/>
         </Async>
 
     </Appenders>
 
 
-
     <Loggers>
         <Logger name="com.home.work" level="debug" additivity="false">
-            <AppenderRef ref="youtube-api-async" />
+            <AppenderRef ref="kafka-play-async" />
         </Logger>
 
         <Logger name="org.springframework" level="debug" additivity="false">
-            <AppenderRef ref="youtube-api-async"/>
+            <AppenderRef ref="kafka-play-async"/>
         </Logger>
 
         <Root level="info">
-            <AppenderRef ref="youtube_api_console_appender" />
-            <AppenderRef ref="youtube-api-async"/>
+            <AppenderRef ref="kafka_play_console_appender" />
+            <AppenderRef ref="kafka-play-async"/>
         </Root>
 
     </Loggers>
