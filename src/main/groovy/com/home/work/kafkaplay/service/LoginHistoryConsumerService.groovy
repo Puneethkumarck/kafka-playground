@@ -21,9 +21,10 @@ class LoginHistoryConsumerService {
 
     @Autowired LoginHistoryDao loginHistoryDao
 
-    @KafkaListener(topics="LOGIN_HISTORY_TOPIC")
+    @KafkaListener(topics='${login.history.topic}')
     void process(ConsumerRecord<?,?> record){
         try {
+            log.info("CONSUMER SERVICE INVOKED}")
             Optional<?> messages = Optional.ofNullable(record.value())
             Object message=null
             if (messages.isPresent()) {
@@ -31,7 +32,8 @@ class LoginHistoryConsumerService {
             }
             log.info("Consumer service incoming message is = ${message} and count is ${consumerCount.incrementAndGet()}")
             LoginHistory loginHistory = objectMapper.readValue(message as String, LoginHistory.class)
-            CompletableFuture.runAsync({ new LoginHistoryDao(loginHistory)})
+            loginHistoryDao.insertCassandra(loginHistory)
+            //CompletableFuture.runAsync({ new LoginHistoryDao(loginHistory)})
         }catch (Exception e){
             log.error("Exception occurred while processing login history kafka message @ consumer",e)
         }

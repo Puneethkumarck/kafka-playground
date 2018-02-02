@@ -14,17 +14,18 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer
 
 
+
 @Configuration
 @EnableKafka
 class KafkaConsumerConfig {
 
-    @Value('consumer.concurrency')
+    @Value('${consumer.concurrency}')
     private int consumerConcurrency
 
-    @Value('login.history.topic')
+    @Value('${login.history.topic}')
     private String loginHistoryTopic
 
-    @Value('bootstrap.servers')
+    @Value('${bootstrap.servers}')
     private String bootStrapServers
 
     @Autowired
@@ -33,7 +34,7 @@ class KafkaConsumerConfig {
     @Bean
     Map<String, Object> consumerConfigs() {
         Map<String, Object> properties = [:]
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootStrapServers )
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootStrapServers)
         properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false)
         properties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "100")
         properties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "15000")
@@ -44,14 +45,17 @@ class KafkaConsumerConfig {
         return properties
     }
 
-    @Bean
+   @Bean
     KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String,String>> kafkaListenerContainerFactory(){
-        ConcurrentKafkaListenerContainerFactory<String,String> concurrentMessageListenerContainer=new ConcurrentKafkaListenerContainerFactory<>(consumerConfigs())
+        ConcurrentKafkaListenerContainerFactory<String,String> concurrentMessageListenerContainer=new ConcurrentKafkaListenerContainerFactory<>()
+        concurrentMessageListenerContainer.consumerFactory=consumerFactory()
         concurrentMessageListenerContainer.concurrency=consumerConcurrency
         concurrentMessageListenerContainer.getContainerProperties().errorHandler=loginHistoryErrorHandler
         concurrentMessageListenerContainer.getContainerProperties().pollTimeout=2000
         concurrentMessageListenerContainer
     }
+
+
 
      @Bean
      ConsumerFactory<String,String> consumerFactory(){

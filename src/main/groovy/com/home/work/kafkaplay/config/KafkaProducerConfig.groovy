@@ -14,13 +14,13 @@ import org.springframework.kafka.core.ProducerFactory
 @Configuration
 class KafkaProducerConfig {
 
-    @Value('bootstrap.servers')
+    @Value('${bootstrap.servers}')
     private String bootStrapServers
 
-    @Value('producer.retries')
+    @Value('${producer.retries}')
     int producerRetries
 
-    @Value('producer.batch.size')
+    @Value('${producer.batch.size}')
     int batchSize
 
     @Bean
@@ -42,13 +42,13 @@ class KafkaProducerConfig {
     }
 
     @Bean
-    ProducerFactory<String,String> producerFactory(){
-        return new DefaultKafkaProducerFactory<String, String>(producerConfig())
+    ProducerFactory<Integer,String> producerFactory(){
+        return new DefaultKafkaProducerFactory<Integer, String>(producerConfig())
     }
 
 
     @Bean
-    KafkaTemplate<String,String> kafkaTemplate(){
-        return new KafkaTemplate<String, String>(producerFactory())
+    KafkaTemplate<Integer,String> kafkaTemplate(){
+        return new KafkaTemplate<Integer, String>(producerFactory())
     }
 }

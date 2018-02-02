@@ -16,18 +16,18 @@ import org.springframework.util.concurrent.ListenableFutureCallback
 class LoginHistoryProducerService {
 
 
-    @Autowired KafkaTemplate kafkaTemplate
+    @Autowired KafkaTemplate<Integer,String> kafkaTemplate
 
     @Autowired ObjectMapper objectMapper
 
-    @Value('login.history.topic')
+    @Value('${login.history.topic}')
     String topic
 
     void sendToLoginHistoryKafka(LoginHistory loginHistory,int i){
 
         try {
             String data = objectMapper.writeValueAsString(loginHistory)
-            ListenableFuture<SendResult<String,String>> future= kafkaTemplate.send(topic, i,objectMapper.writeValueAsString(loginHistory))
+            ListenableFuture<SendResult<Integer,String>> future= kafkaTemplate.send(topic,objectMapper.writeValueAsString(loginHistory))
             future.addCallback(new ListenableFutureCallback<SendResult>() {
          @Override
          void onFailure(Throwable throwable) {
