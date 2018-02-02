@@ -26,6 +26,7 @@ class LoginHistoryProducerService {
     void sendToLoginHistoryKafka(LoginHistory loginHistory,int i){
 
         try {
+
             String data = objectMapper.writeValueAsString(loginHistory)
             ListenableFuture<SendResult<Integer,String>> future= kafkaTemplate.send(topic,objectMapper.writeValueAsString(loginHistory))
             future.addCallback(new ListenableFutureCallback<SendResult>() {
@@ -36,7 +37,7 @@ class LoginHistoryProducerService {
 
          @Override
          void onSuccess(SendResult sendResult) {
-            log.info("Success Callback --> Success On sending login history event to topic=${topic} with message=${data}")
+            log.info("Success Callback --> Success On sending login history event to topic=${topic} with message=${data} offset=${sendResult.recordMetadata.offset()} partition=${sendResult.recordMetadata.partition()}")
          }
      })
 
