@@ -1,6 +1,15 @@
 # kafka-playground
 To play with Latest Apache kafka features
 
+# Kafka Components
+
+## Broker/kafka server
+## Producer
+## Consumer
+## Topic
+## Partition
+
+
 ## Install kafka with docker
 
 (https://hub.docker.com/r/wurstmeister/kafka/)
@@ -24,8 +33,12 @@ brew cask install virtualbox
 Manual Kafka installation three brokers on single node 
 
 a)download the kafka from kafka offcial website , extract the zip file
+
 b)copy server.properties from kafka config directory
-c)rename it to server-1.properties , server-2.properties , server-3.properties
-d)update the broker id in each of the property namely 1 ,2 ,3
+
+c)Rename it to server-1.properties , server-2.properties , server-3.properties
+
+d)update the broker id in each of the property file .
+
 e) start the zookeeper and brokers
 
