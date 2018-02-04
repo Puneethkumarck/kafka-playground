@@ -1,13 +1,17 @@
-# kafka-playground
-To play with Latest Apache kafka features
+kafka-playground
+================
+Apache kafka is a distributed streaming platform that enables publish and subscribe to a stream of records stored in a fault tolerant way also letting you process this stream of records as it occurs.
 
-# Kafka Components
+Kafka Components
+================
 
-## Broker/kafka server
-## Producer
-## Consumer
-## Topic
-## Partition
+- Broker/kafka server - Kafka messaging platform 
+- Producer - which is an application send the message to the kafka
+- Consumer - which is an application that receives/cosnumes data from kafka
+- Topic -  name of a kafka stream / Placeholder to send and recieves message from kafka .
+- Partition - part of a topic
+- Offset - unique id for a message within partition
+- Consumer Groups -  a group of consumers acting as a single logical unit
 
 
 ## Install kafka with docker
