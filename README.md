@@ -109,8 +109,8 @@ Tech
   * Mvn
   * Intelli j idea
   
-RUN
-===
+APP INFO
+========
 
 This App built to demonstrates the kafka features , Have created the controller accepts the number of requests which needs to be sent to     kafka topics , assume you are working on a application where you are having millions of logins to your application in a seconds , you need to store each login details in an table to maintain the login history of the each user. later you can use this data for analytics and many other purpose as per usecase. This App dynamically creates an login details and sends the message to kafka topics(login_history_topic), Kafka_listner in the application will listen to (login_history_topic) which process the each of the message and stores in cassandra login_hostory table.
 
@@ -122,7 +122,10 @@ Login history details storing in cassandra .
  - device - device from which he has logged in
  - loginCount - sequnece number
 
-   - Clone the repo into your local drive
+RUN
+===
+
+ - Clone the repo into your local drive
    - start zookeeper & kafka broker using any of the above steps
    - strat the cassandra
      - cd cloned_repo
@@ -130,6 +133,7 @@ Login history details storing in cassandra .
      - cd docker-compose.yml (which starts cassandra instance in docker)
    - mvn clean install
    - mvn spring-boot:run
+
 
 ### Request : curl -v http:localhost:8080/kafka/loginhistory/1/100000
 
