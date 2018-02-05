@@ -13,6 +13,13 @@ Kafka Components
 - Offset - unique id for a message within partition
 - Consumer Groups -  a group of consumers acting as a single logical unit
 
+core concepts
+=============
+
+- [Introduction](theory/core_concept.md)
+- [Producer Config](theory/producer_config.md)
+- [Consumer Config](theory/consumer_config.md)
+- [kafka offset](theory/kafka-offset.md)
 
 ## Install kafka with docker
 
