@@ -48,6 +48,8 @@
         - sends back the record Metadata which contanis the commited offset and timestamp details
         
   ![Settings Window](https://raw.github.com/Puneethkumarck/kafka-playground/master/screen_shots/kafka_producer-consumer-lifecycle.jpg)
+  
+  pictures taken from learning_journel .
    
 
   
