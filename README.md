@@ -1,5 +1,25 @@
-# kafka-playground
-To play with Latest Apache kafka features
+kafka-playground
+================
+Apache kafka is a distributed streaming platform that enables publish and subscribe to a stream of records stored in a fault tolerant way also letting you process this stream of records as it occurs.
+
+Kafka Components
+================
+
+- Broker/kafka server - Kafka messaging platform 
+- Producer - which is an application send the message to the kafka
+- Consumer - which is an application that receives/cosnumes data from kafka
+- Topic -  name of a kafka stream / Placeholder to send and recieves message from kafka .
+- Partition - part of a topic
+- Offset - unique id for a message within partition
+- Consumer Groups -  a group of consumers acting as a single logical unit
+
+core concepts
+=============
+
+- [Introduction](theory/core_concept.md)
+- [Producer Config](theory/producer_config.md)
+- [Consumer Config](theory/consumer_config.md)
+- [kafka offset](theory/kafka-offset.md)
 
 ## Install kafka with docker
 
@@ -24,8 +44,12 @@ brew cask install virtualbox
 Manual Kafka installation three brokers on single node 
 
 a)download the kafka from kafka offcial website , extract the zip file
+
 b)copy server.properties from kafka config directory
-c)rename it to server-1.properties , server-2.properties , server-3.properties
-d)update the broker id in each of the property namely 1 ,2 ,3
+
+c)Rename it to server-1.properties , server-2.properties , server-3.properties
+
+d)update the broker id in each of the property file .
+
 e) start the zookeeper and brokers
 
