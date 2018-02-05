@@ -21,7 +21,51 @@ core concepts
 - [Consumer Config](theory/consumer_config.md)
 - [kafka offset](theory/kafka-offset.md)
 
-## Install kafka with docker
+kafka Installation
+==================
+ - Install single broker from downloading kafka distribution from offcial website
+     - download the binary distribution from [https://kafka.apache.org/downloads]
+     - extract the tar file into local drive.
+     - start the zookeeper first.
+     
+       cd kafka_2.11-1.0.0 (respective folder u have extracted in previous step)
+       
+       bin/zookeeper-server-start.sh config/zookeeper.properties
+       
+     - start the broker
+     
+       bin/kafka-server.start.sh config/server.properties
+     
+     - create the kafka topics
+     
+       bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 2 --partition 3 --topic login_history_topic
+    
+ - Install kafka downloading from confluent center 
+ 
+   Confluent center is an company which is managing kafka . Binary from confluent center allows us to start the zookeeper,
+   broker and schema registry usning an single command . and also it provides kafka monitoring features via kafka control          
+   center UI. 
+   
+   - download binary distribution from (https://www.confluent.io/download/)
+   - set the path varibale , to execute the confluent commands 
+     
+     export CONFLUENT_HOME=/Documents/confluent-4.0.0
+     export PATH=$CONFLUENT_HOME/bin:$PATH
+     
+   - confluent start . which will start zookeeper , kafka , schema-registry ,kafka rest & kafka connect .
+   
+   - create the kafka topics
+   
+     CONFLUENT_HOME/kafka-topics --create --zookeeper localhost:2181 --replication-factor 2 --partitions 3 login_history_topic
+     
+   
+ - Install kafka using docker machine & docker compose
+ 
+    - cd dcoker
+    - docker-compose full-stack-single-zoo-multi-broker.yml
+
+
+
 
 (https://hub.docker.com/r/wurstmeister/kafka/)
   
