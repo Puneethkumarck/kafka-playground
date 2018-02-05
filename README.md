@@ -57,6 +57,10 @@ kafka Installation
    - create the kafka topics
    
      CONFLUENT_HOME/kafka-topics --create --zookeeper localhost:2181 --replication-factor 2 --partitions 3 login_history_topic
+   
+   - start the control center for to check cluster health and moniter the kafka broker /topics and throughputs & latency etc.
+   
+    $CONFLUENT_HOME/bin/control-center-start  $CONFLUENT_HOME/etc/confluent-control-center/control-center.properties
      
    
  - Install kafka using docker machine & docker compose
@@ -65,35 +69,48 @@ kafka Installation
     - docker-compose full-stack-single-zoo-multi-broker.yml
 
 
+ - Install three kafka broker/cluster in single node/machine.
+ 
+     - download the binary distribution from [https://kafka.apache.org/downloads]
+     - extract the tar file into local drive.
+     - start the zookeeper first.
+     
+       cd kafka_2.11-1.0.0 (respective folder u have extracted in previous step)
+       
+       bin/zookeeper-server-start.sh config/zookeeper.properties
+       
+     -  make three copies of server.properties under config/server.properties namely server-1.properties ,server-2.propeties
+        & server-3.properties
+        
+     - update the broker id in each of the properties as 1 , 2 & 3 . broker id should be unique in the cluster.
+     
+     - start the brokers
+     
+       bin/kafka-server.start.sh config/server-1.properties
+       
+       bin/kafka-server.start.sh config/server-2.properties
+       
+       bin/kafka-server.start.sh config/server-3.properties
+       
+    - create the kafka topics 
+    
+     bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partition 6 --topic login_history_topic
 
 
-(https://hub.docker.com/r/wurstmeister/kafka/)
-  
-scaling kafka brokers using docker-compose
 
-docker-compose up -d
 
-#### Add more brokers:
-
+Other useful commands
+======================
 docker-compose scale kafka=3
-
-#### Destroy a cluster:
 
 docker-compose stop
 
-Installing virutal box to create docker machine in MAC 
+alter partitions in exiting topic - 
 
-brew cask install virtualbox
+bin/kafka-topics.sh --zookeeper localhost:2181 --alter --topic login_history_topic --partition=10
 
-Manual Kafka installation three brokers on single node 
+Note: if partitions are increased for a topic that has a key , the partition logic or ordering of the messages will be affected.
 
-a)download the kafka from kafka offcial website , extract the zip file
 
-b)copy server.properties from kafka config directory
 
-c)Rename it to server-1.properties , server-2.properties , server-3.properties
-
-d)update the broker id in each of the property file .
-
-e) start the zookeeper and brokers
 
