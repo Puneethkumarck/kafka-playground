@@ -130,7 +130,7 @@ RUN
    - strat the cassandra
      - cd cloned_repo
      - cd docker
-     - cd docker-compose.yml (which starts cassandra instance in docker)
+     - docker-compose up (which starts cassandra instance in docker)
    - mvn clean install
    - mvn spring-boot:run
 
