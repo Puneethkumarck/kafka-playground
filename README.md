@@ -23,7 +23,7 @@ core concepts
 
 kafka Installation
 ==================
- - Install single broker from downloading kafka distribution from offcial website
+ - Install single broker downloading kafka distribution from offcial website
      - download the binary distribution from [https://kafka.apache.org/downloads]
      - extract the tar file into local drive.
      - start the zookeeper first.
@@ -66,7 +66,7 @@ kafka Installation
  - Install kafka using docker machine & docker compose
  
     - cd dcoker
-    - docker-compose full-stack-single-zoo-multi-broker.yml
+    - docker-compose up -d
 
 
  - Install three kafka broker/cluster in single node/machine.
