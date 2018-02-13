@@ -112,7 +112,7 @@ Tech
 APP INFO
 ========
 
-This App built to demonstrates the kafka features , Have created the controller accepts the number of requests which needs to be sent to     kafka topics , assume you are working on a application where you are having millions of logins to your application in a seconds , you need to store each login details in an table to maintain the login history of the each user. later you can use this data for analytics and many other purpose as per usecase. This App dynamically creates an login details and sends the message to kafka topics(login_history_topic), Kafka_listner in the application will listen to (login_history_topic) which process the each of the message and stores in cassandra login_hostory table.
+This App built to demonstrates the kafka features , Have created the controller which accepts the number of requests which needs to be sent to     kafka topics , assume you are working on a application where you are having millions of logins to your application in a seconds , you need to store each login details in an table to maintain the login history of the each user. later you can use this data for analytics and many other purpose as per usecase. This App dynamically creates an login details and sends the message to kafka topics(login_history_topic), Kafka_listner in the application will listen to (login_history_topic) which process the each of the message and stores in cassandra login_hostory table.
 
 Login history details storing in cassandra .
  - uid (userId) -Unique id of the logged in customer
