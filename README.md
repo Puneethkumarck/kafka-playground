@@ -38,7 +38,7 @@ kafka Installation
      
      - create the kafka topics
      
-       bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 2 --partition 3 --topic login_history_topic
+       bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 2 --partitions 3 --topic login_history_topic
     
  - Install kafka downloading from confluent center 
  
@@ -94,7 +94,7 @@ kafka Installation
        
     - create the kafka topics 
     
-     bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partition 6 --topic login_history_topic
+     bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 6 --topic login_history_topic
 
 Tech
 ===
