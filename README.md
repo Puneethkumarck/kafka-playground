@@ -34,7 +34,7 @@ kafka Installation
        
      - start the broker
      
-       bin/kafka-server.start.sh config/server.properties
+       bin/kafka-server-start.sh config/server.properties
      
      - create the kafka topics
      
