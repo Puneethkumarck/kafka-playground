@@ -120,7 +120,7 @@ Login history details storing in cassandra .
  - location - location from where he logged in
  - channel - to identify from which channel he has logged in (mobile,desktop,tablet etc)
  - device - device from which he has logged in
- - loginCount - sequnece number
+ - loginCount - sequence number
 
 RUN
 ===
@@ -142,7 +142,7 @@ Other useful commands
 ======================
 docker-compose scale kafka=3
 
-docker-compose stop
+docker-compose down
 
 alter partitions in exiting topic - 
 
